@@ -103,7 +103,7 @@ public class Order extends AggregateRoot<OrderId> {
 	private void validateInitialOrder() {
 		Money orderItemsTotal = items.stream().map(orderItem -> {
 			validatePrice(orderItem);
-			return orderItem.getSubtotal();
+			return orderItem.getSubTotal();
 		}).reduce(Money.ZERO, Money::add);
 
 		if (!price.equals(orderItemsTotal)){
@@ -165,6 +165,11 @@ public class Order extends AggregateRoot<OrderId> {
 		return errorMessages;
 	}
 
+
+	public static Builder builder() {
+		return new Builder();
+	}
+
 	public static final class Builder {
 		private OrderId orderId;
 		private CustomerId customerId;
@@ -177,10 +182,6 @@ public class Order extends AggregateRoot<OrderId> {
 		private List<String> errorMessages;
 
 		private Builder() {
-		}
-
-		public static Builder builder() {
-			return new Builder();
 		}
 
 		public Builder orderId(OrderId val) {
@@ -198,7 +199,7 @@ public class Order extends AggregateRoot<OrderId> {
 			return this;
 		}
 
-		public Builder streetAddress(StreetAddress val) {
+		public Builder deliveryAddress(StreetAddress val) {
 			streetAddress = val;
 			return this;
 		}
