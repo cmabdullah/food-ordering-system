@@ -87,11 +87,17 @@ public class Order extends AggregateRoot<OrderId> {
 		}
 	}
 
-	private void validateItemPrice() {
-		if (orderStatus != null || getId() != null){
+	private void validateInitialOrder() {
+		if (orderStatus != null || getId() != null) {
 			throw new OrderDomainException("Order is not in correct state for initialization!");
 		}
 	}
+
+//	private void validateItemPrice() {
+//		if (orderStatus != null || getId() != null){
+//			throw new OrderDomainException("Order is not in correct state for initialization!");
+//		}
+//	}
 
 	private void validateTotalPrice() {
 
@@ -100,23 +106,23 @@ public class Order extends AggregateRoot<OrderId> {
 		}
 	}
 
-	private void validateInitialOrder() {
+	private void validateItemPrice() {
 		Money orderItemsTotal = items.stream().map(orderItem -> {
 			validatePrice(orderItem);
 			return orderItem.getSubTotal();
 		}).reduce(Money.ZERO, Money::add);
 
 		if (!price.equals(orderItemsTotal)){
-			throw new OrderDomainException("Total price "+ price.getAmount()
-					+" is not equals Order items total: "+orderItemsTotal.getAmount());
+			throw new OrderDomainException("Total price: "+ price.getAmount()
+					+" is not equal to Order items total: "+orderItemsTotal.getAmount()+"!");
 		}
 	}
 
 	private void validatePrice(OrderItem orderItem) {
 
-		if (orderItem.isPriceValid()){
-			throw new OrderDomainException("Order item price :"+orderItem.getPrice().getAmount()+
-					"is not valid for product "+ orderItem.getProduct().getId().getValue());
+		if (!orderItem.isPriceValid()){
+			throw new OrderDomainException("Order item price: "+orderItem.getPrice().getAmount()+
+					" is not valid for product "+ orderItem.getProduct().getId().getValue());
 		}
 	}
 
