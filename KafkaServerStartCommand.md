@@ -6,3 +6,6 @@
 
 > docker-compose -f common.yml -f init_kafka.yml up
 
+
+
+generate kafka schema -> mvn clean install form kafka-model module
