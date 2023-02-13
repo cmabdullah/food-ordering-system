@@ -8,7 +8,7 @@
         <module>order-service</module>
         <module>common</module>
         <module>infrastructure</module>
-        <module>infrastructure/kafka</module>
+<!--        <module>infrastructure/kafka</module>-->
         <module>customer-service</module>
     </modules>
 
