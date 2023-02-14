@@ -14,6 +14,7 @@ public class Money {
 		this.amount = amount;
 	}
 
+	//typo -> isGreaterThanZero
 	public boolean isGreaterThenZero() {
 		return amount != null && this.amount.compareTo(BigDecimal.ZERO) > 0;
 	}
