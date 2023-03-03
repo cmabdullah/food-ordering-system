@@ -11,5 +11,9 @@ ERD
 ![ERD.png](images%2FERD.png)
 
 Order saved sequence diagram
-s
+
 ![food-ordaring-system.drawio-order-saved.svg](images%2Ffood-ordaring-system.drawio-order-saved.svg)
+
+
+
+![food-ordaring-system-payment-complete.drawio.svg](images%2Ffood-ordaring-system-payment-complete.drawio.svg)
