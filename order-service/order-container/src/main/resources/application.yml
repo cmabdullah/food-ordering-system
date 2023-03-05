@@ -10,6 +10,8 @@ order-service:
   payment-response-topic-name: payment-response
   restaurant-approval-request-topic-name: restaurant-approval-request
   restaurant-approval-response-topic-name: restaurant-approval-response
+  outbox-scheduler-fixed-rate: 10000
+  outbox-scheduler-initial-delay: 10000
 
 spring:
   jpa:
@@ -30,10 +32,12 @@ spring:
 
 kafka-config:
   bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
+#  bootstrap-servers: 127.0.0.1:9092
   schema-registry-url-key: schema.registry.url
   schema-registry-url: http://localhost:8081
   num-of-partitions: 3
   replication-factor: 3
+#  replication-factor: 1
 
 kafka-producer-config:
   key-serializer-class: org.apache.kafka.common.serialization.StringSerializer
