@@ -24,10 +24,12 @@ import static com.food.ordering.system.saga.order.SagaConstants.ORDER_SAGA_NAME;
 public class PaymentOutboxHelper {
 
 	private final PaymentOutboxRepository paymentOutboxRepository;
+	private final ObjectMapper objectMapper;
 
-	public PaymentOutboxHelper(PaymentOutboxRepository paymentOutboxRepository) {
+	public PaymentOutboxHelper(PaymentOutboxRepository paymentOutboxRepository,
+	                           ObjectMapper objectMapper) {
 		this.paymentOutboxRepository = paymentOutboxRepository;
-
+		this.objectMapper = objectMapper;
 	}
 
 	@Transactional(readOnly = true)
@@ -54,4 +56,11 @@ public class PaymentOutboxHelper {
 		}
 		log.info("OrderPaymentOutboxMessage saved with outbox id: {}", orderPaymentOutboxMessage.getId());
 	}
+
+	@Transactional
+	public void deletePaymentOutboxMessageByOutboxStatusAndSagaStatus(OutboxStatus outboxStatus,
+                                              SagaStatus... sagaStatus) {
+		paymentOutboxRepository.deleteByTypeAndOutboxStatusAndSagaStatus(ORDER_SAGA_NAME, outboxStatus, sagaStatus);
+	}
+
 }
