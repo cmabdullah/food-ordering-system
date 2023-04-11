@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant-deployment
+  namespace: default
+  labels:
+    app: restaurant-deployment
+spec:
+  selector:
+    matchLabels:
+      app: restaurant-deployment
+  template:
+    metadata:
+      labels:
+        app: restaurant-deployment
+    spec:
+      containers:
+        - name: restaurant-service
+          #          image: com.food.ordering.system/restaurant.service:1.0-SNAPSHOT
+          image: cmabdullah21/restaurant.service:latest
+          env:
+            - name: SPRING_DATASOURCE_URL
+              #              value: "jdbc:postgresql://postgres-service:5432/postgres?currentSchema=restaurant&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+              value: "jdbc:postgresql://192.168.0.9:5432/postgres?currentSchema=restaurant&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified"
+            - name: KAFKA-CONFIG_BOOTSTRAP-SERVERS
+              value: "local-confluent-kafka-cp-kafka-headless:9092"
+            - name: KAFKA-CONFIG_SCHEMA-REGISTRY-URL
+              value: "http://local-confluent-kafka-cp-schema-registry:8081"
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
