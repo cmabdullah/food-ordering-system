@@ -23,7 +23,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=payment&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    url: jdbc:postgresql://192.168.0.8:5432/postgres?currentSchema=payment&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
     username: root_cm
     password: root_cm
     driver-class-name: org.postgresql.Driver
@@ -33,13 +33,13 @@ spring:
     initialization-mode: always
 
 kafka-config:
-#  bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
-  bootstrap-servers: 127.0.0.1:9092
+  bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
+#  bootstrap-servers: 127.0.0.1:9092
   schema-registry-url-key: schema.registry.url
   schema-registry-url: http://localhost:8081
   num-of-partitions: 3
-#  replication-factor: 3
-  replication-factor: 1
+  replication-factor: 3
+#  replication-factor: 1
 
 kafka-producer-config:
   key-serializer-class: org.apache.kafka.common.serialization.StringSerializer

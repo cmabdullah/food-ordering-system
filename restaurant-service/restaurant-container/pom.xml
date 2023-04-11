@@ -42,7 +42,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${project.groupId}/restaurant.service:${project.version}</name>
+<!--                        <name>${project.groupId}/restaurant.service:${project.version}</name>-->
+                        <name>cmabdullah21/restaurant.service:latest</name>
                     </image>
                 </configuration>
                 <executions>

@@ -61,7 +61,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${project.groupId}/order.service:${project.version}</name>
+<!--                        <name>${project.groupId}/order.service:${project.version}</name>-->
+                        <name>cmabdullah21/order.service:latest</name>
                     </image>
                 </configuration>
                 <executions>
